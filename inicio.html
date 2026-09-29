@@ -11,7 +11,7 @@
     <title>LevelNext Games</title>
   </head>
   <body>
-    <header>
+    <header class="cabecalho">
       <h1>LevelNext Games onde seu setup começa aqui!</h1>
       <div class="logotipo">
         <img
@@ -22,7 +22,7 @@
         />
       </div>
       <hr />
-      <nav>
+      <nav class="navegacao">
         <ul>
           <li><a href="inicio.html">Início</a></li>
           <li><a href="produtos.html">Produtos</a></li>
@@ -31,119 +31,157 @@
         </ul>
       </nav>
     </header>
-    <aside>
-      <label for="categoria">Escolha uma categoria:</label>
-      <select name="categoria" id="categoria">
-        <option value="perifericos">Periféricos</option>
-        <option value="monitores">Monitores</option>
-        <option value="hardware">Hardware</option>
-      </select>
-    </aside>
-    <form action="produtos.html" method="get">
-      <label for="pesquisa">Pesquisar Produtos:</label>
-      <input type="search" id="pesquisa" name="pesquisa" />
+    <form class="pesquisa" action="produtos.html" method="get">
+      <label for="pesquisa">Pesquisar Produtos</label>
+      <input
+        type="search"
+        id="pesquisa"
+        name="pesquisa"
+        placeholder="Ex:Mouse"
+        required
+      />
       <button type="submit">Pesquisar</button>
     </form>
-    <main>
+    <main class="inicio">
       <h2>Produtos em Destaque!</h2>
-      <article>
-        <p>
-          <strong style="color: green"
-            >Frete grátis para todo o Brasil, em compras acima de R$
-            19,99!</strong
-          >
-        </p>
-        <br />
-
-        <h3>Headset Gamer Endorfy</h3>
+      <p>
+        <strong style="color: green"
+          >Frete grátis para todo o Brasil, em compras acima de R$
+          19,99!</strong
+        >
+      </p>
+      <br />
+      <article class="produto">
+        <h3>Headset Gamer Pichau Vega</h3>
         <p>
           <span>R$ 138,99</span><strong> Á vista no pix!</strong> ou R$ 160,00
           no cartão.
         </p>
         <img
-          src="https://endorfy.com/cdn/shop/collections/Sluchawki_4866921d-8808-4840-ba91-68ee4c3b5558.png?v=1776840661"
-          alt="Imagem do Headset Endorfy"
+          class="imagem"
+          width="300"
+          height="300"
+          src="../imagens/headset1.webp"
+          alt="Imagem do Headset Gamer Pichau Vega"
         />
-        <video width="500" height="350" controls>
-          <source src="../imagens/headset.mp4" type="video/mp4" />
-          Vídeo do Headset Gamer Endorfy
+        <img
+          class="imagem"
+          width="300"
+          height="300"
+          src="../imagens/headset2.webp"
+          alt="Imagem do Headset Gamer Pichau Vega"
+        />
+        <img
+          class="imagem"
+          width="300"
+          height="300"
+          src="../imagens/headset3.webp"
+          alt="Imagem do Headset Gamer Pichau Vega"
+        />
+        <video class="video" width="500" height="350" controls>
+          <source src="../videos/headset.mp4" type="video/mp4" />
+          Vídeo do Headset Gamer Pichau Vega
         </video>
         <p>
-          Tenha uma experiência sonora imersiva com este headset gamer, equipado
-          com
-          <em
-            >áudio de alta qualidade, microfone integrado e conforto para longas
-            sessões</em
+          Tenha uma experiência sonora imersiva com este headset gamer,
+          <em>
+            equipado com áudio de alta qualidade, microfone integrado e conforto
+            para longas sessões</em
           >. Perfeito para jogar, conversar com seus amigos e aproveitar seus
           conteúdos favoritos com muito mais intensidade.
         </p>
+        <table>
+          <thead>
+            <tr>
+              <th colspan="2">Especificações técnicas:</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <th>Conectividade:</th>
+              <td>USB</td>
+            </tr>
+            <tr>
+              <th>Compatibilidade:</th>
+              <td>PC, PS4, PS5, Xbox One, Xbox Series X/S</td>
+            </tr>
+            <tr>
+              <th>Frequência de Resposta:</th>
+              <td>20Hz - 20KHz</td>
+            </tr>
+            <tr>
+              <th>Impedância:</th>
+              <td>32 Ohms</td>
+            </tr>
+            <tr>
+              <th>Microfone:</th>
+              <td>Sim, com cancelamento de ruído</td>
+            </tr>
+            <tr>
+              <th>Iluminação:</th>
+              <td>RGB personalizável</td>
+            </tr>
+          </tbody>
+        </table>
+        <label for="quatidade">Quantidade</label>
+        <select class="quantidade" name="quantidade" id="quatidade-headset">
+          <option value="1">1</option>
+          <option value="2">2</option>
+          <option value="3">3</option>
+          <option value="4">4</option>
+        </select>
+        <label for="cor">Cor</label>
+        <select clas="cor" name="cor" id="cor-headset">
+          <option value="preto">Preto</option>
+          <option value="branco">Branco</option>
+          <option value="rosa">Rosa</option>
+        </select>
+        <a class="linkcomprar" href="comprar.html">Comprar agora</a>
+        <button onclick="adicionarAoCarrinho(2)">
+          &#x1F6D2;Adicionar ao carrinho
+        </button>
       </article>
-      <table>
-        <thead>
-          <tr>
-            <th colspan="2">Especificações técnicas:</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <th>Conectividade:</th>
-            <td>USB</td>
-          </tr>
-          <tr>
-            <th>Compatibilidade:</th>
-            <td>PC, PS4, PS5, Xbox One, Xbox Series X/S</td>
-          </tr>
-          <tr>
-            <th>Frequência de Resposta:</th>
-            <td>20Hz - 20KHz</td>
-          </tr>
-          <tr>
-            <th>Impedância:</th>
-            <td>32 Ohms</td>
-          </tr>
-          <tr>
-            <th>Microfone:</th>
-            <td>Sim, com cancelamento de ruído</td>
-          </tr>
-          <tr>
-            <th>Iluminação:</th>
-            <td>RGB personalizável</td>
-          </tr>
-        </tbody>
-      </table>
-      <label for="quatidade">Escolha a quantidade</label>
-      <select name="quantidade" id="quatidade-headset">
-        <option value="1">1</option>
-        <option value="2">2</option>
-        <option value="3">3</option>
-        <option value="4">4</option>
-      </select>
-      <a class="linkcomprar" href="comprar.html">Comprar agora</a>
-      <button onclick="adicionarAoCarrinho(2)">
-        &#x1F6D2;Adicionar ao carrinho
-      </button>
       <br />
-      <article>
-        <h3>Teclado Gamer Endorfy</h3>
+      <article class="produto">
+        <h3>Teclado Gamer UltraMax</h3>
         <p>
           <span>R$ 99,99</span><strong> Á vista no pix!</strong> ou R$ 120,00 no
           cartão.
         </p>
         <img
-          src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT36sPKvBL2PUM11UnOG1ZF3EC5__PbIVRiwK-y0a2PDg&s=10"
-          alt="Imagem Do Teclado Endorfy"
+          class="imagem"
+          width="300"
+          height="300"
+          src="../imagens/teclado1.webp"
+          alt="Imagem Do Teclado UltraMax"
         />
-        <video width="500" height="350" controls>
-          <source src="../imagens/teclado.mp4" type="video/mp4" />
+        <img
+          class="imagem"
+          width="300"
+          height="300"
+          src="../imagens/teclado2.webp"
+          alt="Imagem do Teclado UltraMax"
+        />
+        <img
+          class="imagem"
+          width="300"
+          height="300"
+          src="../imagens/teclado3.webp"
+          alt="Imagem do Teclado Ultramax"
+        />
+        <video class="video" width="500" height="350" controls>
+          <source src="../videos/teclado.mp4" type="video/mp4" />
           Vídeo do Teclado Gamer Endorfy
         </video>
         <p>
-          Eleve o nível das suas jogadas e da sua produtividade! Com resposta
-          <em>tátil imediata, design ergonômico e iluminação personalizada</em>,
-          este teclado entrega a velocidade e o conforto que você precisa para
-          horas de uso contínuo.
+          Eleve o nível das suas jogadas e da sua produtividade!
+          <em>
+            Com resposta tátil imediata, design ergonômico e iluminação
+            personalizada</em
+          >, este teclado entrega a velocidade e o conforto que você precisa
+          para horas de uso contínuo.
         </p>
-        <table>
+        <table class="especificacoes">
           <thead>
             <tr>
               <th colspan="2">Especificações técnicas:</th>
@@ -173,11 +211,17 @@
           </tbody>
         </table>
         <label for="quantidade">Escolha a quantidade</label>
-        <select name="quantidade" id="quantidade-teclado">
+        <select class="quantidade" name="quantidade" id="quantidade-teclado">
           <option value="1">1</option>
           <option value="2">2</option>
           <option value="3">3</option>
           <option value="4">4</option>
+        </select>
+        <label for="cor">Cor</label>
+        <select class="cor" name="cor" id="cor-treclado">
+          <option value="preto">Preto</option>
+          <option value="branco">Branco</option>
+          <option value="azul">Azul</option>
         </select>
         <a class="linkcomprar" href="comprar.html">Comprar agora</a>
         <button onclick="adicionarAoCarrinho(2)">
@@ -185,11 +229,12 @@
         </button>
       </article>
     </main>
-    <div>
-      <a href="carrinho.html">Carrinho</a>
+    <br />
+    <div class="carrinho">
+      <a href="carrinho.html">&#x1F6D2;Carrinho</a>
     </div>
-    <footer>
-      <h6>Política e Atendimentos</h6>
+    <footer class="rodape">
+      <h4>Políticas e Atendimentos</h4>
       <p>
         Política de Privacidade: Respeitamos sua privacidade e garantimos a
         proteção dos seus dados pessoais. Para mais informações, consulte nossa
