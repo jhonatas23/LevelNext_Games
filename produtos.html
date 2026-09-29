@@ -7,6 +7,25 @@
     <title>Produtos LevelNext Games</title>
 </head>
 <body>
-    <h1>Prdutos em destaques</h1>
+    <h1>Produtos em destaques</h1>
+    <aside>
+      <label for="categoria">Escolha uma categoria:</label>
+      <select name="categoria" id="categoria">
+        <option value="perifericos">Periféricos</option>
+        <option value="monitores">Monitores</option>
+        <option value="hardware">Hardware</option>
+        <option value="notebook">Notebooks</option>
+      </select>
+    </aside>
+    <form class="pesquisa" action="produtos.html" method="get">
+      <label for="pesquisa">Pesquisar Produtos</label>
+      <input
+        type="search"
+        id="pesquisa"
+        name="pesquisa"
+        placeholder="Ex:Mouse"
+        required
+      />
+      <button type="submit">Pesquisar</button>
 </body>
 </html>
