@@ -13,7 +13,9 @@
   <body>
     <h1>Login</h1>
     <div class="login">
-      <form>
+      <form action="processar_login.js" method="post" onsubmit="return confirm('os dados estão corretos?');">
+        <fieldset>
+          <legend>Dados Cadastrais:</legend>
         <input
           type="text"
           id="email"
@@ -29,6 +31,7 @@
           required
         />
         <button type="submit">Entrar</button>
+        </fieldset>
       </form>
       <a href="cadastro.html">Não tenho uma conta</a>
     </div>
