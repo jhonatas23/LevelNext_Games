@@ -13,51 +13,59 @@
   <body>
     <h1>Cadastro</h1>
     <div class="cadastro">
-      <form onsubmit="return confirm('Os dados estão corretos?');">
-        <input
-          type="text"
-          id="nome"
-          name="nome"
-          pattern="[A-Za-zÁ-ÿ]+"
-          title="Digite apenas letras"
-          placeholder="ex:João Santos"
-          required
-        />
-        <input
-          type="email"
-          id="email"
-          name="email"
-          pattern="[a-zA-Z0-9._%+-]+@gmail\.com"
-          title="Digite o e-mail de forma correta"
-          placeholder="exemplo@gmail.com"
-          required
-        />
-        <input
-          type="password"
-          id="senha"
-          name="senha"
-          pattern="(?=.*[A-Za-z])(?=.*[0-9])(.*[^A-Za-z0-9]).{8,}"
-          title="A senha deve conter pelo menos  caracteres, uma letra, um número e um caractere especial."
-          placeholder="ex:joao123$"
-          required
-        />
-        <input
-          type="password"
-          id="senha"
-          name="senha"
-          pattern="(?=.*[A-Za-z])(?=.*[0-9])(.*[^A-Za-z0-9]).{8,}"
-          title="A senha deve conter pelo menos  caracteres, uma letra, um número e um caractere especial."
-          placeholder="Confirmar Senha"
-          required
-        />
-        <input
-          type="date"
-          id="datanascimento"
-          name="datanascimento"
-          placeholder="Data de Nascimento"
-          required
-        />
-        <button type="submit">Cadastrar</button>
+      <form
+        action="processar_cadastro.js"
+        method="post"
+        onsubmit="return confirm('Os dados estão corretos?');"
+      >
+        <fieldset>
+          <legend>Dados Pessoais:</legend>
+          <input
+            type="text"
+            id="nome"
+            name="nome"
+            pattern="[A-Za-zÁ-ÿ]+"
+            title="Digite apenas letras"
+            placeholder="ex:João Santos"
+            required
+          />
+          <input
+            type="date"
+            id="datanascimento"
+            name="datanascimento"
+            placeholder="Data de Nascimento"
+            required
+          />
+          <legend>Dados Cadastrais:</legend>
+          <input
+            type="email"
+            id="email"
+            name="email"
+            pattern="[a-zA-Z0-9._%+-]+@gmail\.com"
+            title="Digite o e-mail de forma correta"
+            placeholder="exemplo@gmail.com"
+            required
+          />
+          <input
+            type="password"
+            id="senha"
+            name="senha"
+            pattern="(?=.*[A-Za-z])(?=.*[0-9])(.*[^A-Za-z0-9]).{8,}"
+            title="A senha deve conter pelo menos  caracteres, uma letra, um número e um caractere especial."
+            placeholder="ex:joao123$"
+            required
+          />
+          <input
+            type="password"
+            id="confirmsenha"
+            name="confirmsenha"
+            pattern="(?=.*[A-Za-z])(?=.*[0-9])(.*[^A-Za-z0-9]).{8,}"
+            title="A senha deve conter pelo menos  caracteres, uma letra, um número e um caractere especial."
+            placeholder="Confirmar Senha"
+            required
+          />
+          <button type="submit">Cadastrar</button>
+        </fieldset>
       </form>
       <a href="login.html">Já tenho uma conta</a>
     </div>
