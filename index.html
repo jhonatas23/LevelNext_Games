@@ -8,44 +8,42 @@
       href="../imagens/favicon.ico"
       type="image/x-icon"
     />
+    <link rel="stylesheet" href="../css/style.css" />
     <title>LevelNext Games</title>
   </head>
   <body>
     <header class="cabecalho">
-      <h1>LevelNext Games onde seu setup começa aqui!</h1>
-      <div class="logotipo">
-        <img
-          src="../imagens/logotipo.png"
-          alt="LogoTipo da Loja"
-          width="1000"
-          height="auto"
-        />
-      </div>
-      <hr />
-      <nav class="navegacao">
+      <h1>LevelNext <br>Games</h1>
+      <img
+        class="logo"
+        src="../imagens/logotipo2.png"
+        alt="Logotipo da LevelNext Games"
+      />
+      <nav class="nav">
         <ul>
-          <li><a href="inicio.html">Início</a></li>
+          <li><a href="index.html">Início</a></li>
           <li><a href="produtos.html">Produtos</a></li>
-          <li><a href="carrinho.html">Carrinho</a></li>
+          <li><a href="cadastro.html">Cadastrar-se</a></li>
           <li><a href="login.html">Login</a></li>
+          <li><a href="carrinho.html">&#x1F6D2;</a></li>
         </ul>
       </nav>
+
+      <form class="pesquisa" action="produtos.html" method="get">
+        <input
+          type="search"
+          id="pesquisa"
+          name="pesquisa"
+          placeholder="Buscar produtos..."
+          required
+        />
+        <button type="submit" class="btn-pesquisar">Pesquisar</button>
+      </form>
     </header>
-    <form class="pesquisa" action="produtos.html" method="get">
-      <label for="pesquisa">Pesquisar Produtos</label>
-      <input
-        type="search"
-        id="pesquisa"
-        name="pesquisa"
-        placeholder="Ex:Mouse"
-        required
-      />
-      <button type="submit">Pesquisar</button>
-    </form>
     <main class="inicio">
       <h2>Produtos em Destaque!</h2>
       <p>
-        <strong style="color: green"
+        <strong class="frete_gratis"
           >Frete grátis para todo o Brasil, em compras acima de R$
           19,99!</strong
         >
@@ -124,7 +122,14 @@
           </tbody>
         </table>
         <label for="quatidade">Quantidade</label>
-        <select class="quantidade" name="quantidade" id="quatidade-headset" min="1" max="4" value="1">
+        <select
+          class="quantidade"
+          name="quantidade"
+          id="quatidade-headset"
+          min="1"
+          max="4"
+          value="1"
+        >
           <option value="1">1</option>
           <option value="2">2</option>
           <option value="3">3</option>
@@ -211,7 +216,14 @@
           </tbody>
         </table>
         <label for="quantidade">Escolha a quantidade</label>
-        <select class="quantidade" name="quantidade" id="quantidade-teclado" min="1" max="4" value="1">
+        <select
+          class="quantidade"
+          name="quantidade"
+          id="quantidade-teclado"
+          min="1"
+          max="4"
+          value="1"
+        >
           <option value="1">1</option>
           <option value="2">2</option>
           <option value="3">3</option>
