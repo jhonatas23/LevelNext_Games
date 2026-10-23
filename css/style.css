@@ -3,6 +3,7 @@
 }
 body {
   margin: 0;
+  padding: 0;
   font-family: Arial, sans-serif;
   background-color: #cccbcb;
 }
@@ -66,26 +67,25 @@ body {
 .linha-categorias {
   display: flex;
   align-items: center;
-  gap: calc(var(--u) * 20);
+  gap: 0;
+  padding-left: calc(var(--u) * 47);
 }
 .linha-categorias h2 {
   margin: 0;
   color: #000;
   font-size: calc(var(--u) * 28);
-  white-space: nowrap;
-  margin-left: calc(var(--u) * -1000);
-  margin-top: calc(var(--u) * 86);
+  margin-left: calc(var(--u) * -990);
+  margin-top: calc(var(--u) * 88);
 }
 .categoria {
   flex: none;
+  width: 0;
 }
 .categoria ul {
   display: flex;
   align-items: center;
-  gap: calc(var(--u) * 20);
-  margin-left: calc(var(--u) * -820);
-  margin-top: calc(var(--u) * 115);
-  padding: 0;
+  gap: calc(var(--u) * 30);
+  margin-top: calc(var(--u) * 106);
   list-style: none;
 }
 .categoria ul li {
@@ -105,11 +105,10 @@ body {
   display: flex;
   align-items: center;
   gap: calc(var(--u) * 20);
-  margin: 0;
+  margin-left: calc(var(--u) * -80);
   padding: 0;
   list-style: none;
 }
-
 .nav ul li {
   margin: 0;
 }
@@ -119,10 +118,10 @@ body {
   text-decoration: none;
   white-space: nowrap;
 }
-#link:hover {
+.link:hover {
   color: whitesmoke;
 }
 #botao:hover {
   background-color: black;
-  color: whitesmoke;
+  color: whitesmoke
 }
