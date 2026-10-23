@@ -29,24 +29,28 @@
           placeholder="Buscar produtos..."
           required
         />
-        <button type="submit" class="btn-pesquisar">Pesquisar</button>
+        <button type="submit" class="btn-pesquisar" id="botao">Pesquisar</button>
       </form>
-      <nav class="nav">
+      <div class="linha-categorias">
+        <h2>Categorias: </h2>
+      <nav class="categoria" arial-label="Categorias">
+        
         <ul>
-          <li><a href="index.html">Início</a></li>
-          <li><a href="produtos.html">Produtos</a></li>
-          <li><a href="cadastro.html">Cadastrar-se</a></li>
-          <li><a href="login.html">Login</a></li>
-          <li><a href="carrinho.html">&#x1F6D2;</a></li>
+          <li><a href="produtos.html?categoria=consoles" id="link">Consoles</a></li>
+          <li><a href="produtos.html?categoria=jogos" id="link">Jogos</a></li>
+          <li><a href="produtos.html?categoria=pc-gamer" id="link">Pc Gamer</a></li>
+          <li><a href="produtos.html?categoria=perifericos" id="link">Periféricos</a></li>
+          <li><a href="produtos.html?categoria=Ofertas" id="link">Ofertas</a></li>
         </ul>
       </nav>
-      <nav class="categoria">
+    </div>
+      <nav class="nav">
         <ul>
-          <li><a href="produtos.html?categoria=consoles">Consoles</a></li>
-          <li><a href="produtos.html?categoria=jogos">Jogos</a></li>
-          <li><a href="produtos.html?categoria=pc-gamer">Pc Gamer</a></li>
-          <li><a href="produtos.html?categoria=perifericos">Periféricos</a></li>
-          <li><a href="produtos.html?categoria=Ofertas">Ofertas</a></li>
+          <li><a href="index.html" id="link">Início</a></li>
+          <li><a href="produtos.html" id="link">Produtos</a></li>
+          <li><a href="cadastro.html" id="link">Cadastrar-se</a></li>
+          <li><a href="login.html" id="link">Login</a></li>
+          <li><a href="carrinho.html" id="link">&#x1F6D2;</a></li>
         </ul>
       </nav>
     </header>
