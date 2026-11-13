@@ -9,6 +9,7 @@
       type="image/x-icon"
     />
     <title>Cadastro LevelNext Games</title>
+    <link rel="stylesheet" href="../js/vendor/flatpickr/flatpickr.min.css" />
     <link rel="stylesheet" href="../css/cadastro.css" />
   </head>
   <body>
@@ -34,10 +35,11 @@
             required
           />
           <input
-            type="date"
+            type="text"
             id="datanascimento"
             name="datanascimento"
-            placeholder="Data de Nascimento"
+            placeholder="dd/mm/aaaa"
+            inputmode="numeric"
             required
           />
         </fieldset>
@@ -77,5 +79,44 @@
       </form>
       <a href="login.html" id="link">Já tenho uma conta</a>
     </div>
+    <script src="../js/vendor/flatpickr/flatpickr.min.js"></script>
+    <script src="../js/vendor/flatpickr/pt.js"></script>
+    <script>
+      const campoDataNascimento = document.getElementById("datanascimento");
+      const hoje = new Date();
+      hoje.setHours(0, 0, 0, 0);
+      const calendarioNascimento = flatpickr(campoDataNascimento, {
+        locale: "pt",
+        dateFormat: "d/m/Y",
+        maxDate: hoje,
+        allowInput: true,
+        disableMobile: true,
+      });
+
+      const campoDataVisivel = calendarioNascimento.altInput || calendarioNascimento.input;
+      campoDataVisivel.addEventListener("input", (evento) => {
+        const campo = evento.currentTarget;
+        const digitos = campo.value.replace(/\D/g, "");
+        campo.setCustomValidity("");
+
+        if (!/^\d{8}$/.test(digitos)) return;
+
+        const dia = Number(digitos.slice(0, 2));
+        const mes = Number(digitos.slice(2, 4));
+        const ano = Number(digitos.slice(4, 8));
+        const data = new Date(ano, mes - 1, dia);
+        const dataValida = data.getFullYear() === ano
+          && data.getMonth() === mes - 1
+          && data.getDate() === dia
+          && data <= hoje;
+
+        if (!dataValida) {
+          campo.setCustomValidity("Digite uma data válida que não seja futura.");
+          return;
+        }
+
+        calendarioNascimento.setDate(data, true);
+      });
+    </script>
   </body>
 </html>
