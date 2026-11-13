@@ -12,7 +12,9 @@
     <title>Login LevelNext Games</title>
   </head>
   <body>
-    <img src="../imagens/logotipo.png" alt="Logotipo da LevelNext Games" />
+    <nav class="migalhas" aria-label="Trilha de navegação">
+      <ol><li><a href="index.html">Início</a></li><li aria-current="page">Login</li></ol>
+    </nav>
     <div class="login">
       <h1>Login</h1>
       <form
@@ -21,11 +23,13 @@
         onsubmit="return confirm('os dados estão corretos?');"
       >
         <fieldset>
-          <legend>Dados Cadastrais:</legend>
+          <h2 class="titulo-fieldset">Dados Cadastrais:</h2>
           <input
-            type="text"
+            type="email"
             id="email"
             name="email"
+            pattern="[A-Za-z0-9._]+@gmail[.]com"
+            title="Digite um e-mail válido terminado em @gmail.com"
             placeholder="exemplo@gmail.com"
             required
           />

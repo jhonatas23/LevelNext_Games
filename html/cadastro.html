@@ -12,16 +12,18 @@
     <link rel="stylesheet" href="../css/cadastro.css" />
   </head>
   <body>
-    <img src="../imagens/logotipo.png" alt="Logotipo da LevelNext Games" />
+    <nav class="migalhas" aria-label="Trilha de navegação">
+      <ol><li><a href="index.html">Início</a></li><li aria-current="page">Cadastro</li></ol>
+    </nav>
     <div class="cadastro">
       <h1>Cadastro</h1>
       <form
         action="processar_cadastro.js"
         method="post"
-        onsubmit="return confirm('Os dados estão corretos?');"
+        onsubmit="if (document.getElementById('senha').value !== document.getElementById('confirmsenha').value) { alert('As senhas não coincidem.'); return false; } return confirm('Os dados estão corretos?');"
       >
         <fieldset>
-          <legend>Dados Pessoais:</legend>
+          <h2 class="titulo-fieldset">Dados Pessoais</h2>
           <input
             type="text"
             id="nome"
@@ -40,13 +42,13 @@
           />
         </fieldset>
         <fieldset>
-          <legend>Dados Cadastrais:</legend>
+          <h2 class="titulo-fieldset">Dados Cadastrais</h2>
           <input
             type="email"
             id="email"
             name="email"
-            pattern="[a-zA-Z0-9._%+-]+@gmail\.com"
-            title="Digite o e-mail de forma correta"
+            pattern="[A-Za-z0-9._]+@gmail[.]com"
+            title="Digite um e-mail válido terminado em @gmail.com"
             placeholder="exemplo@gmail.com"
             required
           />
@@ -55,8 +57,9 @@
             id="senha"
             name="senha"
             pattern="(?=.*[A-Za-z])(?=.*[0-9])(?=.*[^A-Za-z0-9]).{8,}"
-            title="A senha deve conter 8 caracteres, pelo menos uma letra, um número e um caractere especial."
+            title="Use pelo menos 8 caracteres, uma letra, um número e um caractere especial."
             placeholder="ex:joao123$"
+            oninput="document.getElementById('confirmsenha').setCustomValidity(document.getElementById('confirmsenha').value !== this.value ? 'As senhas não coincidem.' : '')"
             required
           />
           <input
@@ -64,8 +67,9 @@
             id="confirmsenha"
             name="confirmsenha"
             pattern="(?=.*[A-Za-z])(?=.*[0-9])(?=.*[^A-Za-z0-9]).{8,}"
-            title="A senha deve conter 8 caracteres, pelo menos uma letra, um número e um caractere especial."
+            title="Digite a mesma senha do campo anterior."
             placeholder="Confirmar Senha"
+            oninput="this.setCustomValidity(this.value !== document.getElementById('senha').value ? 'As senhas não coincidem.' : '')"
             required
           />
           <button type="submit" id="botao">Cadastrar</button>

@@ -1,4 +1,4 @@
-<!doctype html>
+﻿<!doctype html>
 <html lang="pt-BR">
   <head>
     <meta charset="UTF-8" />
@@ -55,6 +55,9 @@
       </nav>
     </header>
     <main class="inicio">
+      <nav class="migalhas" aria-label="Trilha de navegação">
+        <ol><li aria-current="page">Início</li></ol>
+      </nav>
       <h2>Produtos em Destaque!</h2>
       <p>
         <strong class="frete_gratis"
@@ -63,49 +66,65 @@
         >
       </p>
       <br />
-      <article class="produto">
-        <h3>Headset Gamer Pichau Vega</h3>
-        <p>
-          <span>R$ 138,99</span><strong> Á vista no pix!</strong> ou R$ 160,00
-          no cartão.
-        </p>
-        <img
-          class="imagem"
-          width="300"
-          height="300"
-          src="../imagens/headset1.webp"
-          alt="Imagem do Headset Gamer Pichau Vega"
-        />
-        <img
-          class="imagem"
-          width="300"
-          height="300"
-          src="../imagens/headset2.webp"
-          alt="Imagem do Headset Gamer Pichau Vega"
-        />
-        <img
-          class="imagem"
-          width="300"
-          height="300"
-          src="../imagens/headset3.webp"
-          alt="Imagem do Headset Gamer Pichau Vega"
-        />
-        <video class="video" width="500" height="350" controls>
+      <article class="produto" id="headset-produto">
+        <details class="produto-expansivel" name="produto">
+          <summary class="produto-resumo">
+            <img src="../imagens/headset1.webp" alt="Headset Gamer Pichau Vega" />
+            <span class="produto-resumo-texto">
+              <span class="produto-nome">Headset Gamer Pichau Vega</span>
+              <span class="produto-tags"><span>USB</span><span>RGB</span></span>
+              <span class="produto-preco"><strong>R$ 138,99</strong> &agrave; vista no Pix<br />ou <span class="valor-cartao">R$ 160,00</span> no cart&atilde;o</span>
+            </span>
+          </summary>
+          <div class="produto-layout">
+            <div class="produto-media">
+        <a class="headset-capa" href="#headset-foto-1" aria-label="Abrir fotos e vídeo do Headset Gamer Pichau Vega">
+          <img class="imagem" width="300" height="300" src="../imagens/headset1.webp" alt="Headset Gamer Pichau Vega &mdash; abrir galeria" />
+        </a>
+        <nav class="produto-miniaturas" aria-label="Fotos e vídeo do headset">
+          <a href="#headset-foto-1" aria-label="Abrir foto 1 do headset"><img src="../imagens/headset1.webp" alt="" /></a>
+          <a href="#headset-foto-2" aria-label="Abrir foto 2 do headset"><img src="../imagens/headset2.webp" alt="" /></a>
+          <a href="#headset-foto-3" aria-label="Abrir foto 3 do headset"><img src="../imagens/headset3.webp" alt="" /></a>
+          <a class="miniatura-video" href="#headset-video" aria-label="Abrir vídeo do headset"><img src="../imagens/headset1.webp" alt="" /><span aria-hidden="true">&#9654;</span></a>
+        </nav>
+            </div>
+            <div class="produto-info">
+        <h3 class="produto-nome-aberto">Headset Gamer Pichau Vega</h3>
+        <section class="headset-visualizador" id="headset-foto-1" role="dialog" aria-modal="true" aria-label="Foto 1 de 3 do headset">
+          <a class="visualizador-fechar" href="#headset-produto" aria-label="Fechar galeria">&times;</a>
+          <a class="visualizador-seta esquerda" href="#headset-video" aria-label="Mídia anterior">&#10094;</a>
+          <img src="../imagens/headset1.webp" alt="Headset Gamer Pichau Vega &mdash; foto 1" />
+          <a class="visualizador-seta direita" href="#headset-foto-2" aria-label="Próxima mídia">&#10095;</a>
+          <p>Foto 1 de 3</p>
+        </section>
+        <section class="headset-visualizador" id="headset-foto-2" role="dialog" aria-modal="true" aria-label="Foto 2 de 3 do headset">
+          <a class="visualizador-fechar" href="#headset-produto" aria-label="Fechar galeria">&times;</a>
+          <a class="visualizador-seta esquerda" href="#headset-foto-1" aria-label="Mídia anterior">&#10094;</a>
+          <img src="../imagens/headset2.webp" alt="Headset Gamer Pichau Vega &mdash; foto 2" />
+          <a class="visualizador-seta direita" href="#headset-foto-3" aria-label="Próxima mídia">&#10095;</a>
+          <p>Foto 2 de 3</p>
+        </section>
+        <section class="headset-visualizador" id="headset-foto-3" role="dialog" aria-modal="true" aria-label="Foto 3 de 3 do headset">
+          <a class="visualizador-fechar" href="#headset-produto" aria-label="Fechar galeria">&times;</a>
+          <a class="visualizador-seta esquerda" href="#headset-foto-2" aria-label="Mídia anterior">&#10094;</a>
+          <img src="../imagens/headset3.webp" alt="Headset Gamer Pichau Vega &mdash; foto 3" />
+          <a class="visualizador-seta direita" href="#headset-video" aria-label="Próxima mídia">&#10095;</a>
+          <p>Foto 3 de 3</p>
+        </section>
+        <section class="headset-visualizador" id="headset-video" role="dialog" aria-modal="true" aria-label="Vídeo do headset">
+          <a class="visualizador-fechar" href="#headset-produto" aria-label="Fechar galeria">&times;</a>
+          <a class="visualizador-seta esquerda" href="#headset-foto-3" aria-label="Mídia anterior">&#10094;</a>
+        <video id="headset-player" class="video" controls muted playsinline preload="metadata">
           <source src="../videos/headset.mp4" type="video/mp4" />
           Vídeo do Headset Gamer Pichau Vega
         </video>
-        <p>
-          Tenha uma experiência sonora imersiva com este headset gamer,
-          <em>
-            equipado com áudio de alta qualidade, microfone integrado e conforto
-            para longas sessões</em
-          >. Perfeito para jogar, conversar com seus amigos e aproveitar seus
-          conteúdos favoritos com muito mais intensidade.
-        </p>
+          <a class="visualizador-seta direita" href="#headset-foto-1" aria-label="Próxima mídia">&#10095;</a>
+          <p>Vídeo do headset</p>
+        </section>
         <table>
           <thead>
             <tr>
-              <th colspan="2">Especificações técnicas:</th>
+              <th colspan="2">Especificações técnicas</th>
             </tr>
           </thead>
           <tbody>
@@ -135,7 +154,10 @@
             </tr>
           </tbody>
         </table>
-        <label for="quatidade">Quantidade</label>
+        <h4 class="produto-secao-titulo produto-opcoes-titulo">Opções de compra</h4>
+        <div class="produto-controles">
+        <div class="produto-opcoes">
+        <label for="quatidade-headset">Quantidade</label>
         <select
           class="quantidade"
           name="quantidade"
@@ -149,61 +171,87 @@
           <option value="3">3</option>
           <option value="4">4</option>
         </select>
-        <label for="cor">Cor</label>
+        <label for="cor-headset">Cor</label>
         <select clas="cor" name="cor" id="cor-headset">
           <option value="preto">Preto</option>
           <option value="branco">Branco</option>
           <option value="rosa">Rosa</option>
         </select>
+        </div>
+        <div class="produto-acoes">
         <a class="linkcomprar" href="comprar.html">Comprar agora</a>
         <button onclick="adicionarAoCarrinho(2)">
           &#x1F6D2;Adicionar ao carrinho
         </button>
+        </div>
+        </div>
+        <p class="preco">
+          <span>R$ 138,99</span><strong>&Agrave; vista no Pix!</strong> ou <span class="valor-cartao">R$ 160,00</span> no cart&atilde;o.
+        </p>
+            </div>
+          </div>
+        </details>
       </article>
       <br />
-      <article class="produto">
-        <h3>Teclado Gamer UltraMax</h3>
-        <p>
-          <span>R$ 99,99</span><strong> Á vista no pix!</strong> ou R$ 120,00 no
-          cartão.
-        </p>
-        <img
-          class="imagem"
-          width="300"
-          height="300"
-          src="../imagens/teclado1.webp"
-          alt="Imagem Do Teclado UltraMax"
-        />
-        <img
-          class="imagem"
-          width="300"
-          height="300"
-          src="../imagens/teclado2.webp"
-          alt="Imagem do Teclado UltraMax"
-        />
-        <img
-          class="imagem"
-          width="300"
-          height="300"
-          src="../imagens/teclado3.webp"
-          alt="Imagem do Teclado Ultramax"
-        />
-        <video class="video" width="500" height="350" controls>
+      <article class="produto" id="teclado-produto">
+        <details class="produto-expansivel" name="produto">
+          <summary class="produto-resumo">
+            <img src="../imagens/teclado1.webp" alt="Teclado Gamer UltraMax" />
+            <span class="produto-resumo-texto">
+              <span class="produto-nome">Teclado Gamer UltraMax</span>
+              <span class="produto-tags"><span>USB</span><span>Switch mecânico</span></span>
+              <span class="produto-preco"><strong>R$ 99,99</strong> &agrave; vista no Pix<br />ou <span class="valor-cartao">R$ 120,00</span> no cart&atilde;o</span>
+            </span>
+          </summary>
+          <div class="produto-layout">
+            <div class="produto-media">
+        <a class="headset-capa" href="#teclado-foto-1" aria-label="Abrir fotos e vídeo do Teclado Gamer UltraMax">
+          <img class="imagem" width="300" height="300" src="../imagens/teclado1.webp" alt="Teclado Gamer UltraMax &mdash; abrir galeria" />
+        </a>
+        <nav class="produto-miniaturas" aria-label="Fotos e vídeo do teclado">
+          <a href="#teclado-foto-1" aria-label="Abrir foto 1 do teclado"><img src="../imagens/teclado1.webp" alt="" /></a>
+          <a href="#teclado-foto-2" aria-label="Abrir foto 2 do teclado"><img src="../imagens/teclado2.webp" alt="" /></a>
+          <a href="#teclado-foto-3" aria-label="Abrir foto 3 do teclado"><img src="../imagens/teclado3.webp" alt="" /></a>
+          <a class="miniatura-video" href="#teclado-video" aria-label="Abrir vídeo do teclado"><img src="../imagens/teclado1.webp" alt="" /><span aria-hidden="true">&#9654;</span></a>
+        </nav>
+            </div>
+            <div class="produto-info">
+        <h3 class="produto-nome-aberto">Teclado Gamer UltraMax</h3>
+        <section class="headset-visualizador" id="teclado-foto-1" role="dialog" aria-modal="true" aria-label="Foto 1 de 3 do teclado">
+          <a class="visualizador-fechar" href="#teclado-produto" aria-label="Fechar galeria">&times;</a>
+          <a class="visualizador-seta esquerda" href="#teclado-video" aria-label="Mídia anterior">&#10094;</a>
+          <img src="../imagens/teclado1.webp" alt="Teclado Gamer UltraMax &mdash; foto 1" />
+          <a class="visualizador-seta direita" href="#teclado-foto-2" aria-label="Próxima mídia">&#10095;</a>
+          <p>Foto 1 de 3</p>
+        </section>
+        <section class="headset-visualizador" id="teclado-foto-2" role="dialog" aria-modal="true" aria-label="Foto 2 de 3 do teclado">
+          <a class="visualizador-fechar" href="#teclado-produto" aria-label="Fechar galeria">&times;</a>
+          <a class="visualizador-seta esquerda" href="#teclado-foto-1" aria-label="Mídia anterior">&#10094;</a>
+          <img src="../imagens/teclado2.webp" alt="Teclado Gamer UltraMax &mdash; foto 2" />
+          <a class="visualizador-seta direita" href="#teclado-foto-3" aria-label="Próxima mídia">&#10095;</a>
+          <p>Foto 2 de 3</p>
+        </section>
+        <section class="headset-visualizador" id="teclado-foto-3" role="dialog" aria-modal="true" aria-label="Foto 3 de 3 do teclado">
+          <a class="visualizador-fechar" href="#teclado-produto" aria-label="Fechar galeria">&times;</a>
+          <a class="visualizador-seta esquerda" href="#teclado-foto-2" aria-label="Mídia anterior">&#10094;</a>
+          <img src="../imagens/teclado3.webp" alt="Teclado Gamer UltraMax &mdash; foto 3" />
+          <a class="visualizador-seta direita" href="#teclado-video" aria-label="Próxima mídia">&#10095;</a>
+          <p>Foto 3 de 3</p>
+        </section>
+        <section class="headset-visualizador" id="teclado-video" role="dialog" aria-modal="true" aria-label="Vídeo do teclado">
+          <a class="visualizador-fechar" href="#teclado-produto" aria-label="Fechar galeria">&times;</a>
+          <a class="visualizador-seta esquerda" href="#teclado-foto-3" aria-label="Mídia anterior">&#10094;</a>
+        <video id="teclado-player" class="video" controls muted playsinline preload="metadata">
           <source src="../videos/teclado.mp4" type="video/mp4" />
           Vídeo do Teclado Gamer Endorfy
         </video>
-        <p>
-          Eleve o nível das suas jogadas e da sua produtividade!
-          <em>
-            Com resposta tátil imediata, design ergonômico e iluminação
-            personalizada</em
-          >, este teclado entrega a velocidade e o conforto que você precisa
-          para horas de uso contínuo.
-        </p>
+          <a class="visualizador-seta direita" href="#teclado-foto-1" aria-label="Próxima mídia">&#10095;</a>
+          <p>Vídeo do teclado</p>
+        </section>
         <table class="especificacoes">
           <thead>
             <tr>
-              <th colspan="2">Especificações técnicas:</th>
+              <th colspan="2">Especificações técnicas</th>
             </tr>
           </thead>
           <tbody>
@@ -229,7 +277,10 @@
             </tr>
           </tbody>
         </table>
-        <label for="quantidade">Escolha a quantidade</label>
+        <h4 class="produto-secao-titulo produto-opcoes-titulo">Opções de compra</h4>
+        <div class="produto-controles">
+        <div class="produto-opcoes">
+        <label for="quantidade-teclado">Quantidade</label>
         <select
           class="quantidade"
           name="quantidade"
@@ -243,22 +294,29 @@
           <option value="3">3</option>
           <option value="4">4</option>
         </select>
-        <label for="cor">Cor</label>
-        <select class="cor" name="cor" id="cor-treclado">
+        <label for="cor-teclado">Cor</label>
+        <select class="cor" name="cor" id="cor-teclado">
           <option value="preto">Preto</option>
           <option value="branco">Branco</option>
           <option value="azul">Azul</option>
         </select>
+        </div>
+        <div class="produto-acoes">
         <a class="linkcomprar" href="comprar.html">Comprar agora</a>
         <button onclick="adicionarAoCarrinho(2)">
           &#x1F6D2;Adicionar ao carrinho
         </button>
+        </div>
+        </div>
+        <p class="preco">
+          <span>R$ 99,99</span><strong>&Agrave; vista no Pix!</strong> ou <span class="valor-cartao">R$ 120,00</span> no cart&atilde;o.
+        </p>
+            </div>
+          </div>
+        </details>
       </article>
     </main>
     <br />
-    <div class="carrinho">
-      <a href="carrinho.html">&#x1F6D2;Carrinho</a>
-    </div>
     <footer class="rodape">
       <h4>Políticas e Atendimentos</h4>
       <p>
@@ -285,5 +343,63 @@
         >
       </p>
     </footer>
+  <script>
+    const sincronizarVideos = () => {
+      document.querySelectorAll(".headset-visualizador video").forEach((video) => {
+        const visualizador = video.closest(".headset-visualizador");
+        if (window.location.hash !== `#${visualizador.id}`) {
+          video.pause();
+        }
+      });
+    };
+
+    window.addEventListener("hashchange", sincronizarVideos);
+
+    document.querySelectorAll(".headset-visualizador .visualizador-fechar, .headset-visualizador .visualizador-seta, .produto-miniaturas > a").forEach((link) => {
+      link.addEventListener("click", (event) => {
+        event.preventDefault();
+        const videoAtual = link.closest(".headset-visualizador")?.querySelector("video");
+        if (videoAtual) videoAtual.pause();
+
+        const destino = document.querySelector(link.getAttribute("href"));
+        const videoDestino = destino?.classList.contains("headset-visualizador")
+          ? destino.querySelector("video")
+          : null;
+        if (videoDestino) videoDestino.play().catch(() => {});
+
+        window.location.replace(link.href);
+      });
+    });
+
+    const sincronizarProdutos = () => {
+      const produtoAtivo = window.location.hash.slice(1);
+      document.querySelectorAll(".produto-expansivel").forEach((detalhes) => {
+        detalhes.open = detalhes.closest(".produto").id === produtoAtivo;
+      });
+    };
+
+    document.querySelectorAll(".produto-resumo").forEach((resumo) => {
+      resumo.addEventListener("click", () => {
+        const produto = resumo.closest(".produto");
+        if (!resumo.parentElement.open) {
+          window.history.pushState({ produto: produto.id }, "", `#${produto.id}`);
+        }
+      });
+    });
+
+    window.addEventListener("popstate", () => {
+      sincronizarProdutos();
+      sincronizarVideos();
+    });
+
+    const visualizadorInicial = document.getElementById(window.location.hash.slice(1));
+    if (visualizadorInicial?.classList.contains("headset-visualizador")) {
+      const produtoInicial = visualizadorInicial.closest(".produto");
+      window.history.replaceState({ produto: produtoInicial.id }, "", `#${produtoInicial.id}`);
+    }
+
+    sincronizarProdutos();
+    sincronizarVideos();
+  </script>
   </body>
 </html>
