@@ -5,34 +5,497 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="shortcut icon" href="../imagens/favicon.ico" type="image/x-icon">
     <link rel="stylesheet" href="../css/style.css">
+    <style>
+      .pagina-produtos { grid-template-columns: repeat(4, minmax(0, 1fr)); row-gap: 4px; padding-top: 40px; }
+      .pagina-produtos > h1,
+      .pagina-produtos > .pesquisa { grid-column: 1 / -1; }
+      body > nav.migalhas-produtos {
+        position: static;
+        width: 100%;
+        margin: 18px auto 0;
+        transform: none;
+        color: #000;
+        font-size: .9rem;
+        text-align: initial;
+      }
+      .migalhas-produtos ol { display: flex; flex-wrap: nowrap; justify-content: center; gap: 8px; margin: 0; padding: 0; list-style: none; }
+      .migalhas-produtos li + li::before { margin-right: 8px; content: "/"; }
+      .migalhas-produtos a,
+      .migalhas-produtos a:hover { color: #000; text-decoration: none; }
+      .migalhas-produtos li[aria-current="page"] { font-size: .9rem; font-weight: 400; }
+      .migalhas-produtos li:not([aria-current="page"]) a { font-size: 1.1rem; font-weight: 700; }
+      .pagina-produtos > h1 {
+        margin: 90px 0 0;
+        color: #172b4d;
+        font-size: clamp(1.5rem, 3vw, 2.1rem);
+        line-height: 1.2;
+        text-align: center;
+      }
+      .pagina-produtos > h1::after {
+        display: block;
+        width: 64px;
+        height: 4px;
+        margin: 10px auto 0;
+        border-radius: 999px;
+        background: #0b57d1;
+        content: "";
+      }
+      .pagina-produtos > .pesquisa input:focus-visible {
+        outline: 3px solid #0b57d155;
+        outline-offset: 2px;
+      }
+      .pagina-produtos > .pesquisa {
+        grid-area: auto;
+        grid-column: 1 / -1;
+        grid-row: 1;
+        width: 100%;
+        max-width: none;
+        justify-self: center;
+        margin-top: 30px;
+        transform: translateY(30px);
+        position: relative;
+        isolation: isolate;
+        min-width: 0;
+        align-items: center;
+        gap: 8px;
+        min-height: 60px;
+        padding: 16px;
+        background: transparent;
+      }
+      .pagina-produtos > .pesquisa::before {
+        position: absolute;
+        inset: -14px auto;
+        left: 50%;
+        z-index: -1;
+        width: 100vw;
+        transform: translateX(-50%);
+        background: #0b57d1;
+        content: "";
+      }
+      .pagina-produtos > .pesquisa label {
+        position: absolute;
+        width: 1px;
+        height: 1px;
+        padding: 0;
+        overflow: hidden;
+        clip: rect(0, 0, 0, 0);
+        white-space: nowrap;
+        clip-path: inset(50%);
+      }
+      .pagina-produtos > .pesquisa input {
+        flex: 1;
+        min-width: 0;
+        min-height: 42px;
+        padding: 8px 12px;
+        border: 2px solid #0b57d1;
+        border-radius: 6px;
+        background: #fff;
+        font: inherit;
+      }
+      .pagina-produtos > .pesquisa button {
+        flex: 0 0 110px;
+        min-height: 42px;
+        padding: 8px 12px;
+        border: 1px solid #ccc;
+        border-radius: 6px;
+        background: #efefef;
+        cursor: pointer;
+        transition: background-color .2s, color .2s;
+      }
+      .pagina-produtos > .pesquisa select {
+        flex: 0 0 160px;
+        min-width: 0;
+        min-height: 42px;
+        padding: 8px 10px;
+        border: 2px solid #0b57d1;
+        border-radius: 6px;
+        background: #fff;
+        color: #073f9b;
+        font: inherit;
+        font-weight: 600;
+        cursor: pointer;
+      }
+      .pagina-produtos > .pesquisa select:focus-visible {
+        outline: 3px solid #0b57d155;
+        outline-offset: 2px;
+      }
+      .pagina-produtos > .pesquisa button:hover {
+        background: #111;
+        color: #fff;
+      }
+      .pagina-produtos > .produto {
+        align-self: stretch;
+        width: 100%;
+        min-height: 230px;
+        margin: 108px 0 0;
+        transform: translateY(30px);
+        padding: 16px;
+      }
+      .pagina-produtos .produto-expansivel,
+      .pagina-produtos .produto-resumo { height: 100%; }
+      .pagina-produtos .produto-resumo { align-content: center; }
+      .pagina-produtos .produto-resumo {
+        grid-template-columns: minmax(72px, 100px) minmax(0, 1fr);
+        gap: 10px;
+      }
+      .pagina-produtos .produto-resumo-texto { gap: 7px; }
+      .pagina-produtos .produto-nome { font-size: 1.1rem; }
+      .pagina-produtos > .produto:has(.produto-expansivel[open]) {
+        width: min(100%, 1100px);
+        grid-column: 1 / -1;
+        justify-self: center;
+      }
+      @media (max-width: 1000px) {
+        .pagina-produtos { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+      }
+      @media (max-width: 760px) {
+        .pagina-produtos { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+      }
+      @media (max-width: 520px) {
+        .pagina-produtos { grid-template-columns: minmax(0, 1fr); }
+        .pagina-produtos > .pesquisa { width: 100%; }
+        .pagina-produtos > .pesquisa select { flex-basis: 120px; }
+        .pagina-produtos > .pesquisa button { flex-basis: 96px; }
+      }
+    </style>
     <title>Produtos LevelNext Games</title>
 </head>
 <body>
-  <main class="inicio">
-    <nav class="migalhas" aria-label="Trilha de navegação">
+    <nav class="migalhas migalhas-produtos" aria-label="Trilha de navegação">
       <ol><li><a href="index.html">Início</a></li><li aria-current="page">Produtos</li></ol>
     </nav>
-    <h1>Produtos em destaque</h1>
-    <aside>
-      <label for="categoria">Categorias:</label>
-      <select name="categoria" id="categoria">
-        <option value="perifericos">Periféricos</option>
-        <option value="monitores">Monitores</option>
-        <option value="hardware">Hardware</option>
-        <option value="notebook">Notebooks</option>
-      </select>
-    </aside>
+  <main class="inicio pagina-produtos">
     <form class="pesquisa" action="produtos.html" method="get">
       <label for="pesquisa">Pesquisar Produtos:</label>
       <input
         type="search"
         id="pesquisa"
         name="pesquisa"
-        placeholder="Ex:Mouse"
+        placeholder="Buscar produtos..."
         required
       />
       <button type="submit">Pesquisar</button>
+      <label for="categoria">Categoria</label>
+      <select name="categoria" id="categoria">
+        <option value="">Categorias</option>
+        <option value="consoles">Consoles</option>
+        <option value="jogos">Jogos</option>
+        <option value="pc-gamer">PC Gamer</option>
+        <option value="perifericos">Periféricos</option>
+        <option value="ofertas">Ofertas</option>
+      </select>
     </form>
-  </main>
+    <h1>Produtos em destaque</h1>
+
+<article class="produto" id="headset-produto">
+        <details class="produto-expansivel" name="produto">
+          <summary class="produto-resumo">
+            <img src="../imagens/headset1.webp" alt="Headset Gamer Pichau Vega" />
+            <span class="produto-resumo-texto">
+              <span class="produto-nome">Headset Gamer Pichau Vega</span>
+              <span class="produto-tags"><span>USB</span><span>RGB</span></span>
+              <span class="produto-preco"><strong>R$ 138,99</strong> &agrave; vista no Pix<br />ou <span class="valor-cartao">R$ 160,00</span> no cart&atilde;o</span>
+              <span class="produto-frete">Frete grátis</span>
+            </span>
+          </summary>
+          <div class="produto-layout">
+            <div class="produto-media">
+        <a class="headset-capa" href="#headset-foto-1" aria-label="Abrir fotos e vídeo do Headset Gamer Pichau Vega">
+          <img class="imagem" width="300" height="300" src="../imagens/headset1.webp" alt="Headset Gamer Pichau Vega &mdash; abrir galeria" />
+        </a>
+        <nav class="produto-miniaturas" aria-label="Fotos e vídeo do headset">
+          <a href="#headset-foto-1" aria-label="Abrir foto 1 do headset"><img src="../imagens/headset1.webp" alt="" /></a>
+          <a href="#headset-foto-2" aria-label="Abrir foto 2 do headset"><img src="../imagens/headset2.webp" alt="" /></a>
+          <a href="#headset-foto-3" aria-label="Abrir foto 3 do headset"><img src="../imagens/headset3.webp" alt="" /></a>
+          <a class="miniatura-video" href="#headset-video" aria-label="Abrir vídeo do headset"><img src="../imagens/headset1.webp" alt="" /><span aria-hidden="true">&#9654;</span></a>
+        </nav>
+            </div>
+            <div class="produto-info">
+        <h3 class="produto-nome-aberto">Headset Gamer Pichau Vega</h3>
+        <section class="headset-visualizador" id="headset-foto-1" role="dialog" aria-modal="true" aria-label="Foto 1 de 3 do headset">
+          <a class="visualizador-fechar" href="#headset-produto" aria-label="Fechar galeria">&times;</a>
+          <a class="visualizador-seta esquerda" href="#headset-video" aria-label="Mídia anterior">&#10094;</a>
+          <img src="../imagens/headset1.webp" alt="Headset Gamer Pichau Vega &mdash; foto 1" />
+          <a class="visualizador-seta direita" href="#headset-foto-2" aria-label="Próxima mídia">&#10095;</a>
+          <p>Foto 1 de 3</p>
+        </section>
+        <section class="headset-visualizador" id="headset-foto-2" role="dialog" aria-modal="true" aria-label="Foto 2 de 3 do headset">
+          <a class="visualizador-fechar" href="#headset-produto" aria-label="Fechar galeria">&times;</a>
+          <a class="visualizador-seta esquerda" href="#headset-foto-1" aria-label="Mídia anterior">&#10094;</a>
+          <img src="../imagens/headset2.webp" alt="Headset Gamer Pichau Vega &mdash; foto 2" />
+          <a class="visualizador-seta direita" href="#headset-foto-3" aria-label="Próxima mídia">&#10095;</a>
+          <p>Foto 2 de 3</p>
+        </section>
+        <section class="headset-visualizador" id="headset-foto-3" role="dialog" aria-modal="true" aria-label="Foto 3 de 3 do headset">
+          <a class="visualizador-fechar" href="#headset-produto" aria-label="Fechar galeria">&times;</a>
+          <a class="visualizador-seta esquerda" href="#headset-foto-2" aria-label="Mídia anterior">&#10094;</a>
+          <img src="../imagens/headset3.webp" alt="Headset Gamer Pichau Vega &mdash; foto 3" />
+          <a class="visualizador-seta direita" href="#headset-video" aria-label="Próxima mídia">&#10095;</a>
+          <p>Foto 3 de 3</p>
+        </section>
+        <section class="headset-visualizador" id="headset-video" role="dialog" aria-modal="true" aria-label="Vídeo do headset">
+          <a class="visualizador-fechar" href="#headset-produto" aria-label="Fechar galeria">&times;</a>
+          <a class="visualizador-seta esquerda" href="#headset-foto-3" aria-label="Mídia anterior">&#10094;</a>
+        <video id="headset-player" class="video" controls muted playsinline preload="metadata">
+          <source src="../videos/headset.mp4" type="video/mp4" />
+          Vídeo do Headset Gamer Pichau Vega
+        </video>
+          <a class="visualizador-seta direita" href="#headset-foto-1" aria-label="Próxima mídia">&#10095;</a>
+          <p>Vídeo do headset</p>
+        </section>
+        <table>
+          <thead>
+            <tr>
+              <th colspan="2">Especificações técnicas</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <th>Conectividade:</th>
+              <td>USB</td>
+            </tr>
+            <tr>
+              <th>Compatibilidade:</th>
+              <td>PC, PS4, PS5, Xbox One, Xbox Series X/S</td>
+            </tr>
+            <tr>
+              <th>Frequência de Resposta:</th>
+              <td>20Hz - 20KHz</td>
+            </tr>
+            <tr>
+              <th>Impedância:</th>
+              <td>32 Ohms</td>
+            </tr>
+            <tr>
+              <th>Microfone:</th>
+              <td>Sim, com cancelamento de ruído</td>
+            </tr>
+            <tr>
+              <th>Iluminação:</th>
+              <td>RGB personalizável</td>
+            </tr>
+          </tbody>
+        </table>
+        <h4 class="produto-secao-titulo produto-opcoes-titulo">Opções de compra</h4>
+        <div class="produto-controles">
+        <div class="produto-opcoes">
+        <label for="quatidade-headset">Quantidade</label>
+        <select
+          class="quantidade"
+          name="quantidade"
+          id="quatidade-headset"
+          min="1"
+          max="4"
+          value="1"
+        >
+          <option value="1">1</option>
+          <option value="2">2</option>
+          <option value="3">3</option>
+          <option value="4">4</option>
+        </select>
+        <label for="cor-headset">Cor</label>
+        <select clas="cor" name="cor" id="cor-headset">
+          <option value="preto">Preto</option>
+          <option value="branco">Branco</option>
+          <option value="rosa">Rosa</option>
+        </select>
+        </div>
+        <div class="produto-acoes">
+        <a class="linkcomprar" href="comprar.html">Comprar agora</a>
+        <button onclick="adicionarAoCarrinho(2)">
+          &#x1F6D2;Adicionar ao carrinho
+        </button>
+        </div>
+        </div>
+        <p class="preco">
+          <span>R$ 138,99</span><strong>&Agrave; vista no Pix!</strong> ou <span class="valor-cartao">R$ 160,00</span> no cart&atilde;o.<br /><span class="produto-frete-detalhe">Frete grátis para todo o Brasil!</span>
+        </p>
+            </div>
+          </div>
+        </details>
+      </article>
+      <br />
+      <article class="produto" id="teclado-produto">
+        <details class="produto-expansivel" name="produto">
+          <summary class="produto-resumo">
+            <img src="../imagens/teclado1.webp" alt="Teclado Gamer UltraMax" />
+            <span class="produto-resumo-texto">
+              <span class="produto-nome">Teclado Gamer UltraMax</span>
+              <span class="produto-tags"><span>USB</span><span>Switch mecânico</span></span>
+              <span class="produto-preco"><strong>R$ 99,99</strong> &agrave; vista no Pix<br />ou <span class="valor-cartao">R$ 120,00</span> no cart&atilde;o</span>
+              <span class="produto-frete">Frete grátis</span>
+            </span>
+          </summary>
+          <div class="produto-layout">
+            <div class="produto-media">
+        <a class="headset-capa" href="#teclado-foto-1" aria-label="Abrir fotos e vídeo do Teclado Gamer UltraMax">
+          <img class="imagem" width="300" height="300" src="../imagens/teclado1.webp" alt="Teclado Gamer UltraMax &mdash; abrir galeria" />
+        </a>
+        <nav class="produto-miniaturas" aria-label="Fotos e vídeo do teclado">
+          <a href="#teclado-foto-1" aria-label="Abrir foto 1 do teclado"><img src="../imagens/teclado1.webp" alt="" /></a>
+          <a href="#teclado-foto-2" aria-label="Abrir foto 2 do teclado"><img src="../imagens/teclado2.webp" alt="" /></a>
+          <a href="#teclado-foto-3" aria-label="Abrir foto 3 do teclado"><img src="../imagens/teclado3.webp" alt="" /></a>
+          <a class="miniatura-video" href="#teclado-video" aria-label="Abrir vídeo do teclado"><img src="../imagens/teclado1.webp" alt="" /><span aria-hidden="true">&#9654;</span></a>
+        </nav>
+            </div>
+            <div class="produto-info">
+        <h3 class="produto-nome-aberto">Teclado Gamer UltraMax</h3>
+        <section class="headset-visualizador" id="teclado-foto-1" role="dialog" aria-modal="true" aria-label="Foto 1 de 3 do teclado">
+          <a class="visualizador-fechar" href="#teclado-produto" aria-label="Fechar galeria">&times;</a>
+          <a class="visualizador-seta esquerda" href="#teclado-video" aria-label="Mídia anterior">&#10094;</a>
+          <img src="../imagens/teclado1.webp" alt="Teclado Gamer UltraMax &mdash; foto 1" />
+          <a class="visualizador-seta direita" href="#teclado-foto-2" aria-label="Próxima mídia">&#10095;</a>
+          <p>Foto 1 de 3</p>
+        </section>
+        <section class="headset-visualizador" id="teclado-foto-2" role="dialog" aria-modal="true" aria-label="Foto 2 de 3 do teclado">
+          <a class="visualizador-fechar" href="#teclado-produto" aria-label="Fechar galeria">&times;</a>
+          <a class="visualizador-seta esquerda" href="#teclado-foto-1" aria-label="Mídia anterior">&#10094;</a>
+          <img src="../imagens/teclado2.webp" alt="Teclado Gamer UltraMax &mdash; foto 2" />
+          <a class="visualizador-seta direita" href="#teclado-foto-3" aria-label="Próxima mídia">&#10095;</a>
+          <p>Foto 2 de 3</p>
+        </section>
+        <section class="headset-visualizador" id="teclado-foto-3" role="dialog" aria-modal="true" aria-label="Foto 3 de 3 do teclado">
+          <a class="visualizador-fechar" href="#teclado-produto" aria-label="Fechar galeria">&times;</a>
+          <a class="visualizador-seta esquerda" href="#teclado-foto-2" aria-label="Mídia anterior">&#10094;</a>
+          <img src="../imagens/teclado3.webp" alt="Teclado Gamer UltraMax &mdash; foto 3" />
+          <a class="visualizador-seta direita" href="#teclado-video" aria-label="Próxima mídia">&#10095;</a>
+          <p>Foto 3 de 3</p>
+        </section>
+        <section class="headset-visualizador" id="teclado-video" role="dialog" aria-modal="true" aria-label="Vídeo do teclado">
+          <a class="visualizador-fechar" href="#teclado-produto" aria-label="Fechar galeria">&times;</a>
+          <a class="visualizador-seta esquerda" href="#teclado-foto-3" aria-label="Mídia anterior">&#10094;</a>
+        <video id="teclado-player" class="video" controls muted playsinline preload="metadata">
+          <source src="../videos/teclado.mp4" type="video/mp4" />
+          Vídeo do Teclado Gamer Endorfy
+        </video>
+          <a class="visualizador-seta direita" href="#teclado-foto-1" aria-label="Próxima mídia">&#10095;</a>
+          <p>Vídeo do teclado</p>
+        </section>
+        <table class="especificacoes">
+          <thead>
+            <tr>
+              <th colspan="2">Especificações técnicas</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <th>Conectividade:</th>
+              <td>USB</td>
+            </tr>
+            <tr>
+              <th>Compatibilidade:</th>
+              <td>PC, Notebook</td>
+            </tr>
+            <tr>
+              <th>Frequência de resposta:</th>
+              <td>125 Hz</td>
+            </tr>
+            <tr>
+              <th>Teclas:</th>
+              <td>Switch mecânico azul</td>
+            </tr>
+            <tr>
+              <th>Iluminação:</th>
+              <td>RGB personalizável</td>
+            </tr>
+          </tbody>
+        </table>
+        <h4 class="produto-secao-titulo produto-opcoes-titulo">Opções de compra</h4>
+        <div class="produto-controles">
+        <div class="produto-opcoes">
+        <label for="quantidade-teclado">Quantidade</label>
+        <select
+          class="quantidade"
+          name="quantidade"
+          id="quantidade-teclado"
+          min="1"
+          max="4"
+          value="1"
+        >
+          <option value="1">1</option>
+          <option value="2">2</option>
+          <option value="3">3</option>
+          <option value="4">4</option>
+        </select>
+        <label for="cor-teclado">Cor</label>
+        <select class="cor" name="cor" id="cor-teclado">
+          <option value="preto">Preto</option>
+          <option value="branco">Branco</option>
+          <option value="azul">Azul</option>
+        </select>
+        </div>
+        <div class="produto-acoes">
+        <a class="linkcomprar" href="comprar.html">Comprar agora</a>
+        <button onclick="adicionarAoCarrinho(2)">
+          &#x1F6D2;Adicionar ao carrinho
+        </button>
+        </div>
+        </div>
+        <p class="preco">
+          <span>R$ 99,99</span><strong>&Agrave; vista no Pix!</strong> ou <span class="valor-cartao">R$ 120,00</span> no cart&atilde;o.<br /><span class="produto-frete-detalhe">Frete grátis para todo o Brasil!</span>
+        </p>
+            </div>
+          </div>
+        </details>
+      </article>
+</main>
+  <script>
+    const sincronizarVideos = () => {
+      document.querySelectorAll(".headset-visualizador video").forEach((video) => {
+        const visualizador = video.closest(".headset-visualizador");
+        if (window.location.hash !== `#${visualizador.id}`) {
+          video.pause();
+        }
+      });
+    };
+
+    window.addEventListener("hashchange", sincronizarVideos);
+
+    document.querySelectorAll(".headset-visualizador .visualizador-fechar, .headset-visualizador .visualizador-seta, .produto-miniaturas > a, .headset-capa").forEach((link) => {
+      link.addEventListener("click", (event) => {
+        event.preventDefault();
+        const videoAtual = link.closest(".headset-visualizador")?.querySelector("video");
+        if (videoAtual) videoAtual.pause();
+
+        const destino = document.querySelector(link.getAttribute("href"));
+        const videoDestino = destino?.classList.contains("headset-visualizador")
+          ? destino.querySelector("video")
+          : null;
+        if (videoDestino) videoDestino.play().catch(() => {});
+
+        window.location.replace(link.href);
+      });
+    });
+
+    const sincronizarProdutos = () => {
+      const produtoAtivo = window.location.hash.slice(1);
+      document.querySelectorAll(".produto-expansivel").forEach((detalhes) => {
+        detalhes.open = detalhes.closest(".produto").id === produtoAtivo;
+      });
+    };
+
+    document.querySelectorAll(".produto-resumo").forEach((resumo) => {
+      resumo.addEventListener("click", () => {
+        const produto = resumo.closest(".produto");
+        if (!resumo.parentElement.open) {
+          window.history.replaceState({ produto: produto.id }, "", `#${produto.id}`);
+        }
+      });
+    });
+
+    window.addEventListener("popstate", () => {
+      sincronizarProdutos();
+      sincronizarVideos();
+    });
+
+    const visualizadorInicial = document.getElementById(window.location.hash.slice(1));
+    if (visualizadorInicial?.classList.contains("headset-visualizador")) {
+      const produtoInicial = visualizadorInicial.closest(".produto");
+      window.history.replaceState({ produto: produtoInicial.id }, "", `#${produtoInicial.id}`);
+    }
+
+    sincronizarProdutos();
+    sincronizarVideos();
+  </script>
 </body>
 </html>

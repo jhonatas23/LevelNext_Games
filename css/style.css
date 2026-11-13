@@ -83,6 +83,7 @@ body:has(.produto-expansivel[open]) .inicio { margin-block: 16px; }
 .produto-preco { color: #17488d; font-size: 1rem; line-height: 1.6; }
 .produto-preco strong { margin-right: .3em; color: #0b57d1; font-size: 1.2rem; }
 .produto-preco .valor-cartao { color: #0b57d1; font-weight: 700; }
+.produto-frete { color: #146c2e; font-size: .9rem; font-weight: 700; }
 .produto-nome-aberto { margin: 0 0 12px; color: #172b4d; font-size: clamp(1.4rem, 2.8vw, 1.8rem); text-align: left; }
 .produto-layout { display: grid; grid-template-columns: minmax(0, 440px) minmax(0, 1fr); align-items: stretch; gap: 44px; }
 .produto-media, .produto-info { min-width: 0; }
@@ -91,6 +92,7 @@ body:has(.produto-expansivel[open]) .inicio { margin-block: 16px; }
 .produto-secao-titulo { width: 100%; max-width: 640px; margin: 24px auto 8px; color: #172b4d; font-size: 1.1rem; text-align: center; }
 .produto-info > .preco { width: fit-content; max-width: 100%; margin: 18px auto; padding: 12px 16px; border-radius: 8px; background: #fff; color: #17488d; font-size: 1.05rem; line-height: 1.6; text-align: center; }
 .produto-info > .preco span { color: #0b57d1; font-size: 1.25rem; font-weight: 700; }
+.produto-info > .preco .produto-frete-detalhe { display: block; margin-top: 6px; color: #146c2e; font-size: .9rem; }
 .produto-info > .preco > span:first-child { margin-right: .35em; }
 .produto-info > .produto-nome-aberto { order: 1; margin: 0 0 10px; }
 .produto-info > .preco { order: 2; margin: 0 0 16px; }

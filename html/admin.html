@@ -1,0 +1,133 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="shortcut icon" href="../imagens/favicon.ico" type="image/x-icon" />
+    <link rel="stylesheet" href="../css/style.css" />
+    <link rel="stylesheet" href="../css/admin.css" />
+    <title>Administração | LevelNext Games</title>
+  </head>
+  <body class="pagina-admin">
+    <header class="admin-cabecalho">
+      <a class="admin-marca" href="index.html">
+        <img src="../imagens/logotipo2.png" alt="" />
+        <span>LevelNext Games</span>
+      </a>
+      <a class="admin-voltar" href="index.html">Voltar à loja</a>
+    </header>
+
+    <main class="admin-conteudo">
+      <nav class="migalhas" aria-label="Trilha de navegação">
+        <ol>
+          <li><a href="index.html">Início</a></li>
+          <li aria-current="page">Administração</li>
+        </ol>
+      </nav>
+
+      <section class="admin-intro" aria-labelledby="titulo-admin">
+        <p class="admin-etiqueta">PAINEL DA LOJA</p>
+        <h1 id="titulo-admin">Gerenciar produtos</h1>
+        <p>Cadastre as informações para manter os novos produtos no mesmo padrão da loja.</p>
+      </section>
+
+      <section class="admin-painel" aria-labelledby="titulo-formulario">
+        <div class="admin-secao-cabecalho">
+          <div>
+            <h2 id="titulo-formulario">Adicionar produto</h2>
+            <p>Preencha os dados que aparecerão no cartão do produto.</p>
+          </div>
+          <span class="admin-passo">NOVO CADASTRO</span>
+        </div>
+
+        <form class="admin-formulario">
+          <div class="admin-campos">
+            <label class="campo-admin campo-largo" for="nome-produto">
+              Nome do produto
+              <input id="nome-produto" name="nome" type="text" placeholder="Ex.: Headset Gamer Pichau Vega" required />
+            </label>
+
+            <label class="campo-admin" for="categoria-produto">
+              Categoria
+              <select id="categoria-produto" name="categoria" required>
+                <option value="" selected disabled>Selecione uma categoria</option>
+                <option>Consoles</option>
+                <option>Jogos</option>
+                <option>PC Gamer</option>
+                <option>Periféricos</option>
+                <option>Ofertas</option>
+              </select>
+            </label>
+
+            <label class="campo-admin" for="caracteristicas">
+              Características
+              <input id="caracteristicas" name="caracteristicas" type="text" placeholder="Ex.: USB, RGB" />
+              <span class="ajuda-campo">Separe cada característica com vírgula.</span>
+            </label>
+
+            <label class="campo-admin" for="imagem-produto">
+              Imagem principal
+              <input id="imagem-produto" name="imagem" type="file" accept="image/*" required />
+            </label>
+
+            <label class="campo-admin" for="preco-pix">
+              Preço no Pix (R$)
+              <input id="preco-pix" name="preco_pix" type="number" min="0" step="0.01" placeholder="0,00" required />
+            </label>
+
+            <label class="campo-admin" for="preco-cartao">
+              Preço no cartão (R$)
+              <input id="preco-cartao" name="preco_cartao" type="number" min="0" step="0.01" placeholder="0,00" required />
+            </label>
+
+            <label class="campo-admin campo-largo" for="descricao-produto">
+              Descrição
+              <textarea id="descricao-produto" name="descricao" rows="4" placeholder="Descreva os detalhes do produto"></textarea>
+            </label>
+          </div>
+
+          <div class="admin-acoes-formulario">
+            <p>Esta tela é uma prévia visual. Para salvar e publicar produtos, será necessária a integração com o sistema da loja.</p>
+            <button type="button" disabled>Adicionar produto</button>
+          </div>
+        </form>
+      </section>
+
+      <section class="admin-listagem" aria-labelledby="titulo-listagem">
+        <div class="admin-secao-cabecalho">
+          <div>
+            <h2 id="titulo-listagem">Produtos atuais</h2>
+            <p>Prévia dos produtos já cadastrados na página inicial.</p>
+          </div>
+          <span class="admin-contagem">02 produtos</span>
+        </div>
+
+        <div class="admin-produtos inicio">
+          <article class="produto">
+            <div class="produto-resumo">
+                <img src="../imagens/headset1.webp" alt="Headset Gamer Pichau Vega" />
+                <span class="produto-resumo-texto">
+                  <span class="produto-nome">Headset Gamer Pichau Vega</span>
+                  <span class="produto-tags"><span>USB</span><span>RGB</span></span>
+                  <span class="produto-preco"><strong>R$ 138,99</strong> à vista no Pix<br />ou <span class="valor-cartao">R$ 160,00</span> no cartão</span>
+                </span>
+            </div>
+            <p class="admin-detalhe-produto">Periféricos · Produto ativo na loja</p>
+          </article>
+
+          <article class="produto">
+            <div class="produto-resumo">
+                <img src="../imagens/teclado1.webp" alt="Teclado Gamer UltraMax" />
+                <span class="produto-resumo-texto">
+                  <span class="produto-nome">Teclado Gamer UltraMax</span>
+                  <span class="produto-tags"><span>USB</span><span>Switch mecânico</span></span>
+                  <span class="produto-preco"><strong>R$ 99,99</strong> à vista no Pix<br />ou <span class="valor-cartao">R$ 120,00</span> no cartão</span>
+                </span>
+            </div>
+            <p class="admin-detalhe-produto">Periféricos · Produto ativo na loja</p>
+          </article>
+        </div>
+      </section>
+    </main>
+  </body>
+</html>

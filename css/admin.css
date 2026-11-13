@@ -1,0 +1,48 @@
+.pagina-admin { min-height: 100vh; background: #f3f6fa; color: #172b4d; }
+.admin-cabecalho { display: flex; align-items: center; justify-content: space-between; gap: 16px; padding: 12px clamp(16px, 4vw, 56px); background: #0b57d1; }
+.admin-marca { display: inline-flex; align-items: center; gap: 10px; color: #fff; font-size: 1.2rem; font-weight: 700; text-decoration: none; }
+.admin-marca img { width: 54px; height: 54px; object-fit: contain; }
+.admin-voltar { padding: 9px 14px; border: 1px solid #ffffff80; border-radius: 7px; color: #fff; font-weight: 700; text-decoration: none; transition: background-color .2s, color .2s; }
+.admin-voltar:hover { background: #fff; color: #0b57d1; }
+.admin-conteudo { width: min(1120px, calc(100% - 32px)); margin: 24px auto 56px; }
+.admin-conteudo > .migalhas { margin-bottom: 28px; }
+.admin-intro { margin-bottom: 24px; text-align: center; }
+.admin-etiqueta { margin: 0 0 6px; color: #0b57d1; font-size: .78rem; font-weight: 800; letter-spacing: .14em; }
+.admin-intro h1 { margin: 0; color: #172b4d; font-size: clamp(1.8rem, 4vw, 2.5rem); }
+.admin-intro > p:last-child { margin: 8px 0 0; color: #52627a; }
+.admin-painel, .admin-listagem { margin-top: 20px; padding: clamp(18px, 3vw, 30px); border: 1px solid #dce3ed; border-radius: 14px; background: #fff; box-shadow: 0 5px 20px #17335c0b; }
+.admin-secao-cabecalho { display: flex; align-items: center; justify-content: space-between; gap: 16px; margin-bottom: 22px; }
+.admin-secao-cabecalho h2 { margin: 0; color: #172b4d; font-size: 1.35rem; }
+.admin-secao-cabecalho p { margin: 4px 0 0; color: #64748b; }
+.admin-passo, .admin-contagem { flex: none; padding: 6px 10px; border-radius: 999px; background: #eaf1ff; color: #0846aa; font-size: .75rem; font-weight: 800; letter-spacing: .04em; }
+.admin-campos { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 18px; }
+.campo-admin { display: grid; align-content: start; gap: 7px; min-width: 0; color: #263449; font-weight: 700; }
+.campo-largo { grid-column: 1 / -1; }
+.campo-admin input, .campo-admin select, .campo-admin textarea { width: 100%; min-height: 44px; margin: 0; padding: 10px 12px; border: 1px solid #b9c5d5; border-radius: 7px; background: #fff; color: #172b4d; font: inherit; font-weight: 400; }
+.campo-admin input[type="file"] { padding: 8px; }
+.campo-admin textarea { min-height: 110px; resize: vertical; }
+.campo-admin input:focus-visible, .campo-admin select:focus-visible, .campo-admin textarea:focus-visible { outline: 3px solid #0b57d155; outline-offset: 2px; border-color: #0b57d1; }
+.ajuda-campo { color: #64748b; font-size: .82rem; font-weight: 400; }
+.admin-acoes-formulario { display: flex; align-items: center; justify-content: space-between; gap: 20px; margin-top: 22px; padding-top: 18px; border-top: 1px solid #e5eaf1; }
+.admin-acoes-formulario p { max-width: 620px; margin: 0; color: #64748b; font-size: .9rem; }
+.admin-acoes-formulario button { min-height: 44px; padding: 10px 18px; border: 1px solid #0b57d1; border-radius: 7px; background: #0b57d1; color: #fff; font: inherit; font-weight: 700; }
+.admin-acoes-formulario button:disabled { cursor: not-allowed; opacity: .55; }
+.admin-listagem { margin-top: 24px; }
+.admin-produtos.inicio { width: 100%; margin: 0; gap: 18px; }
+.admin-produtos .produto { width: 100%; margin: 0; }
+.admin-produtos .produto-resumo { grid-template-columns: minmax(100px, 150px) minmax(0, 1fr); }
+.admin-detalhe-produto { margin: 18px 0 0; color: #64748b; font-size: .9rem; }
+
+@media (max-width: 640px) {
+  .admin-cabecalho { padding-inline: 16px; }
+  .admin-marca { font-size: 1rem; }
+  .admin-marca img { width: 44px; height: 44px; }
+  .admin-conteudo { margin-top: 18px; }
+  .admin-secao-cabecalho { align-items: flex-start; flex-direction: column; }
+  .admin-campos { grid-template-columns: minmax(0, 1fr); }
+  .campo-largo { grid-column: auto; }
+  .admin-acoes-formulario { align-items: stretch; flex-direction: column; }
+  .admin-acoes-formulario button { width: 100%; }
+  .admin-produtos.inicio { grid-template-columns: minmax(0, 1fr); }
+  .admin-produtos .produto-resumo { grid-template-columns: minmax(85px, 120px) minmax(0, 1fr); gap: 12px; }
+}
