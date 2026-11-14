@@ -40,7 +40,7 @@
           <li><a href="produtos.html?categoria=jogos" class="link">Jogos</a></li>
           <li><a href="produtos.html?categoria=pc-gamer" class="link">Pc Gamer</a></li>
           <li><a href="produtos.html?categoria=perifericos" class="link">Periféricos</a></li>
-          <li><a href="produtos.html?categoria=Ofertas" class="link">Ofertas</a></li>
+          <li><a href="produtos.html?categoria=ofertas" class="link">Ofertas</a></li>
         </ul>
       </nav>
     </div>
@@ -54,7 +54,7 @@
         </ul>
       </nav>
     </header>
-    <main class="inicio">
+    <main class="inicio pagina-inicial">
       <nav class="migalhas" aria-label="Trilha de navegação">
         <ol><li aria-current="page">Início</li></ol>
       </nav>
@@ -75,6 +75,7 @@
               <span class="produto-tags"><span>USB</span><span>RGB</span></span>
               <span class="produto-preco"><strong>R$ 138,99</strong> &agrave; vista no Pix<br />ou <span class="valor-cartao">R$ 160,00</span> no cart&atilde;o</span>
               <span class="produto-frete">Frete grátis</span>
+              <span class="produto-disponibilidade" data-estoque-para="headset-produto"></span>
             </span>
           </summary>
           <div class="produto-layout">
@@ -163,9 +164,6 @@
           class="quantidade"
           name="quantidade"
           id="quatidade-headset"
-          min="1"
-          max="4"
-          value="1"
         >
           <option value="1">1</option>
           <option value="2">2</option>
@@ -173,15 +171,15 @@
           <option value="4">4</option>
         </select>
         <label for="cor-headset">Cor</label>
-        <select clas="cor" name="cor" id="cor-headset">
+        <select class="cor" name="cor" id="cor-headset">
           <option value="preto">Preto</option>
           <option value="branco">Branco</option>
           <option value="rosa">Rosa</option>
         </select>
         </div>
         <div class="produto-acoes">
-        <a class="linkcomprar" href="comprar.html">Comprar agora</a>
-        <button onclick="adicionarAoCarrinho(2)">
+        <a class="linkcomprar" href="comprar.html?origem=produtos">Comprar agora</a>
+        <button type="button" data-adicionar-carrinho>
           &#x1F6D2;Adicionar ao carrinho
         </button>
         </div>
@@ -203,6 +201,7 @@
               <span class="produto-tags"><span>USB</span><span>Switch mecânico</span></span>
               <span class="produto-preco"><strong>R$ 99,99</strong> &agrave; vista no Pix<br />ou <span class="valor-cartao">R$ 120,00</span> no cart&atilde;o</span>
               <span class="produto-frete">Frete grátis</span>
+              <span class="produto-disponibilidade" data-estoque-para="teclado-produto"></span>
             </span>
           </summary>
           <div class="produto-layout">
@@ -287,9 +286,6 @@
           class="quantidade"
           name="quantidade"
           id="quantidade-teclado"
-          min="1"
-          max="4"
-          value="1"
         >
           <option value="1">1</option>
           <option value="2">2</option>
@@ -304,8 +300,8 @@
         </select>
         </div>
         <div class="produto-acoes">
-        <a class="linkcomprar" href="comprar.html">Comprar agora</a>
-        <button onclick="adicionarAoCarrinho(2)">
+        <a class="linkcomprar" href="comprar.html?origem=produtos">Comprar agora</a>
+        <button type="button" data-adicionar-carrinho>
           &#x1F6D2;Adicionar ao carrinho
         </button>
         </div>
@@ -345,63 +341,7 @@
         >
       </p>
     </footer>
-  <script>
-    const sincronizarVideos = () => {
-      document.querySelectorAll(".headset-visualizador video").forEach((video) => {
-        const visualizador = video.closest(".headset-visualizador");
-        if (window.location.hash !== `#${visualizador.id}`) {
-          video.pause();
-        }
-      });
-    };
-
-    window.addEventListener("hashchange", sincronizarVideos);
-
-    document.querySelectorAll(".headset-visualizador .visualizador-fechar, .headset-visualizador .visualizador-seta, .produto-miniaturas > a").forEach((link) => {
-      link.addEventListener("click", (event) => {
-        event.preventDefault();
-        const videoAtual = link.closest(".headset-visualizador")?.querySelector("video");
-        if (videoAtual) videoAtual.pause();
-
-        const destino = document.querySelector(link.getAttribute("href"));
-        const videoDestino = destino?.classList.contains("headset-visualizador")
-          ? destino.querySelector("video")
-          : null;
-        if (videoDestino) videoDestino.play().catch(() => {});
-
-        window.location.replace(link.href);
-      });
-    });
-
-    const sincronizarProdutos = () => {
-      const produtoAtivo = window.location.hash.slice(1);
-      document.querySelectorAll(".produto-expansivel").forEach((detalhes) => {
-        detalhes.open = detalhes.closest(".produto").id === produtoAtivo;
-      });
-    };
-
-    document.querySelectorAll(".produto-resumo").forEach((resumo) => {
-      resumo.addEventListener("click", () => {
-        const produto = resumo.closest(".produto");
-        if (!resumo.parentElement.open) {
-          window.history.pushState({ produto: produto.id }, "", `#${produto.id}`);
-        }
-      });
-    });
-
-    window.addEventListener("popstate", () => {
-      sincronizarProdutos();
-      sincronizarVideos();
-    });
-
-    const visualizadorInicial = document.getElementById(window.location.hash.slice(1));
-    if (visualizadorInicial?.classList.contains("headset-visualizador")) {
-      const produtoInicial = visualizadorInicial.closest(".produto");
-      window.history.replaceState({ produto: produtoInicial.id }, "", `#${produtoInicial.id}`);
-    }
-
-    sincronizarProdutos();
-    sincronizarVideos();
-  </script>
+  <script src="../js/galeria-produtos.js" defer></script>
+  <script src="../js/carrinho.js" defer></script>
   </body>
 </html>
