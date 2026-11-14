@@ -17,33 +17,32 @@
     </nav>
     <div class="login">
       <h1>Login</h1>
-      <form
-        action="processar_login.js"
-        method="post"
-        onsubmit="return confirm('os dados estão corretos?');"
-      >
+      <form id="login-form">
         <fieldset>
           <h2 class="titulo-fieldset">Dados Cadastrais:</h2>
           <input
             type="email"
             id="email"
             name="email"
-            pattern="[A-Za-z0-9._]+@gmail[.]com"
-            title="Digite um e-mail válido terminado em @gmail.com"
-            placeholder="exemplo@gmail.com"
+            aria-label="E-mail"
+            title="Digite um e-mail válido."
+            placeholder="nome@exemplo.com"
             required
           />
           <input
             type="password"
             id="senha"
             name="senha"
+            aria-label="Senha"
             placeholder="ex:joao123$"
             required
           />
           <button type="submit" id="botao">Entrar</button>
         </fieldset>
       </form>
+      <p class="form-feedback" id="login-feedback" role="status" aria-live="polite"></p>
       <a href="cadastro.html" id="link">Não tenho uma conta</a>
     </div>
+    <script src="../js/login.js" defer></script>
   </body>
 </html>
