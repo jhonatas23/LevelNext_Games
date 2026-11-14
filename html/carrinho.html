@@ -8,12 +8,19 @@
     <title>Carrinho de Compras</title>
 </head>
 <body>
+    <nav class="migalhas migalhas-interna" aria-label="Trilha de navegação">
+        <ol><li><a href="index.html">Início</a></li><li aria-current="page">Carrinho</li></ol>
+    </nav>
     <main class="carrinho">
-        <nav class="migalhas" aria-label="Trilha de navegação">
-            <ol><li><a href="index.html">Início</a></li><li aria-current="page">Carrinho</li></ol>
-        </nav>
         <h1>Carrinho de Compras</h1>
-        <p>Seu carrinho está vazio.</p>
+        <p class="carrinho-vazio" id="carrinho-vazio">Seu carrinho está vazio.</p>
+        <section class="carrinho-itens" id="carrinho-itens" aria-live="polite"></section>
+        <section class="carrinho-resumo" id="carrinho-resumo" hidden>
+            <strong id="carrinho-total-container">Total: <span id="carrinho-total">R$ 0,00</span></strong>
+            <a class="linkcomprar" id="carrinho-continuar" href="comprar.html?origem=carrinho">Continuar para a compra</a>
+            <a class="linkcomprar" href="pedidos.html">Ver meus pedidos</a>
+        </section>
     </main>
+    <script src="../js/carrinho.js" defer></script>
 </body>
 </html>
