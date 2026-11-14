@@ -1,0 +1,20 @@
+.politicas-pagina { grid-template-columns: minmax(0, 1fr); gap: 22px; }
+      .politicas-pagina > h1 { grid-column: 1 / -1; margin: 0; color: #172b4d; font-size: clamp(1.8rem, 4vw, 2.5rem); line-height: 1.2; text-align: center; }
+      .politicas-pagina > h1::after { display: block; width: 64px; height: 4px; margin: 12px auto 0; border-radius: 999px; background: #0b57d1; content: ""; }
+      .politicas-intro { max-width: 800px; margin: 0 auto; color: #435166; text-align: center; }
+      .politicas-aviso { display: flex; align-items: flex-start; gap: 12px; padding: 16px 18px; border: 1px solid #b9d0f5; border-left: 5px solid #0b57d1; border-radius: 10px; background: #f2f7ff; color: #203b65; }
+      .politicas-aviso p { margin: 0; }
+      .politicas-grade { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 18px; }
+      .politicas-bloco { min-width: 0; padding: clamp(18px, 3vw, 26px); border: 1px solid #e0e6ef; border-radius: 12px; background: #fff; box-shadow: 0 4px 16px #172b4d0d; }
+      .politicas-bloco h2 { margin: 0 0 12px; color: #172b4d; font-size: 1.3rem; }
+      .politicas-bloco h3 { margin: 18px 0 6px; color: #0846aa; font-size: 1rem; }
+      .politicas-bloco p { margin: 0 0 10px; color: #435166; }
+      .politicas-bloco ul { display: grid; gap: 8px; margin: 10px 0 0; padding-left: 22px; color: #435166; }
+      .politicas-bloco li::marker { color: #0b57d1; }
+      .politicas-bloco a { color: #0846aa; font-weight: 700; text-underline-offset: 3px; }
+      .politicas-bloco a:hover { color: #0b57d1; }
+      .politicas-referencias { grid-column: 1 / -1; padding: 18px 22px; border-radius: 10px; background: #f3f6fa; }
+      .politicas-referencias h2 { margin: 0 0 8px; color: #172b4d; font-size: 1.05rem; }
+      .politicas-referencias ul { display: flex; flex-wrap: wrap; gap: 8px 24px; margin: 0; padding-left: 20px; }
+      .politicas-referencias a { color: #0846aa; }
+      @media (max-width: 700px) { .politicas-grade { grid-template-columns: minmax(0, 1fr); } .politicas-referencias { grid-column: auto; } }
