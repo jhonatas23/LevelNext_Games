@@ -240,12 +240,12 @@ a.checkout-link:focus-visible,
 a.admin-voltar:focus-visible { outline: 3px solid #0b57d155; outline-offset: 2px; }
 
 @media (max-width: 850px) {
-  .cabecalho { grid-template-columns: auto minmax(180px, 1fr); grid-template-areas: "marca pesquisa" "categorias categorias" "nav nav"; gap: 12px 16px; }
+  .cabecalho { grid-template-columns: auto minmax(180px, 1fr); grid-template-areas: "marca pesquisa" "nav nav" "categorias categorias"; gap: 12px 16px; }
   .nav ul { gap: 8px 18px; }
 }
 
 @media (max-width: 520px) {
-  .cabecalho { grid-template-columns: 1fr; grid-template-areas: "marca" "pesquisa" "categorias" "nav"; padding: 12px 16px; }
+  .cabecalho { grid-template-columns: 1fr; grid-template-areas: "marca" "pesquisa" "nav" "categorias"; padding: 12px 16px; }
   .linha-categorias { align-items: flex-start; flex-direction: column; gap: 4px; }
   .categoria ul, .nav ul { gap: 6px 14px; }
   .categoria a, .nav a { font-size: 1.045rem; }
