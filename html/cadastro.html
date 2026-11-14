@@ -18,19 +18,16 @@
     </nav>
     <div class="cadastro">
       <h1>Cadastro</h1>
-      <form
-        action="processar_cadastro.js"
-        method="post"
-        onsubmit="if (document.getElementById('senha').value !== document.getElementById('confirmsenha').value) { alert('As senhas não coincidem.'); return false; } return confirm('Os dados estão corretos?');"
-      >
+      <form id="cadastro-form">
         <fieldset>
           <h2 class="titulo-fieldset">Dados Pessoais</h2>
           <input
             type="text"
             id="nome"
             name="nome"
-            pattern="[A-Za-zÀ-ÿ]+"
-            title="Digite apenas letras"
+            aria-label="Nome completo"
+            pattern="[A-Za-zÀ-ÿ][A-Za-zÀ-ÿ .'-]*"
+            title="Digite um nome válido."
             placeholder="ex:João Santos"
             required
           />
@@ -38,6 +35,9 @@
             type="text"
             id="datanascimento"
             name="datanascimento"
+            aria-label="Data de nascimento"
+            pattern="[0-9]{2}/[0-9]{2}/[0-9]{4}"
+            title="Digite a data no formato dd/mm/aaaa."
             placeholder="dd/mm/aaaa"
             inputmode="numeric"
             required
@@ -49,74 +49,39 @@
             type="email"
             id="email"
             name="email"
-            pattern="[A-Za-z0-9._]+@gmail[.]com"
-            title="Digite um e-mail válido terminado em @gmail.com"
-            placeholder="exemplo@gmail.com"
+            aria-label="E-mail"
+            title="Digite um e-mail válido."
+            placeholder="nome@exemplo.com"
             required
           />
           <input
             type="password"
             id="senha"
             name="senha"
+            aria-label="Senha"
             pattern="(?=.*[A-Za-z])(?=.*[0-9])(?=.*[^A-Za-z0-9]).{8,}"
             title="Use pelo menos 8 caracteres, uma letra, um número e um caractere especial."
             placeholder="ex:joao123$"
-            oninput="document.getElementById('confirmsenha').setCustomValidity(document.getElementById('confirmsenha').value !== this.value ? 'As senhas não coincidem.' : '')"
             required
           />
           <input
             type="password"
             id="confirmsenha"
             name="confirmsenha"
+            aria-label="Confirme a senha"
             pattern="(?=.*[A-Za-z])(?=.*[0-9])(?=.*[^A-Za-z0-9]).{8,}"
             title="Digite a mesma senha do campo anterior."
             placeholder="Confirmar Senha"
-            oninput="this.setCustomValidity(this.value !== document.getElementById('senha').value ? 'As senhas não coincidem.' : '')"
             required
           />
           <button type="submit" id="botao">Cadastrar</button>
         </fieldset>
       </form>
+      <p class="form-feedback" id="cadastro-feedback" role="status" aria-live="polite"></p>
       <a href="login.html" id="link">Já tenho uma conta</a>
     </div>
     <script src="../js/vendor/flatpickr/flatpickr.min.js"></script>
     <script src="../js/vendor/flatpickr/pt.js"></script>
-    <script>
-      const campoDataNascimento = document.getElementById("datanascimento");
-      const hoje = new Date();
-      hoje.setHours(0, 0, 0, 0);
-      const calendarioNascimento = flatpickr(campoDataNascimento, {
-        locale: "pt",
-        dateFormat: "d/m/Y",
-        maxDate: hoje,
-        allowInput: true,
-        disableMobile: true,
-      });
-
-      const campoDataVisivel = calendarioNascimento.altInput || calendarioNascimento.input;
-      campoDataVisivel.addEventListener("input", (evento) => {
-        const campo = evento.currentTarget;
-        const digitos = campo.value.replace(/\D/g, "");
-        campo.setCustomValidity("");
-
-        if (!/^\d{8}$/.test(digitos)) return;
-
-        const dia = Number(digitos.slice(0, 2));
-        const mes = Number(digitos.slice(2, 4));
-        const ano = Number(digitos.slice(4, 8));
-        const data = new Date(ano, mes - 1, dia);
-        const dataValida = data.getFullYear() === ano
-          && data.getMonth() === mes - 1
-          && data.getDate() === dia
-          && data <= hoje;
-
-        if (!dataValida) {
-          campo.setCustomValidity("Digite uma data válida que não seja futura.");
-          return;
-        }
-
-        calendarioNascimento.setDate(data, true);
-      });
-    </script>
+    <script src="../js/cadastro.js" defer></script>
   </body>
 </html>
