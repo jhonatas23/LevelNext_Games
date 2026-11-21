@@ -2,15 +2,20 @@ const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 
 function normalizeEmail(email) {
-  return String(email || "").trim().toLowerCase();
+  return String(email || "")
+    .trim()
+    .toLowerCase();
 }
 
 function isValidPassword(password) {
-  return typeof password === "string"
-    && password.length >= 8
-    && /[A-Za-z]/.test(password)
-    && /\d/.test(password)
-    && /[^A-Za-z0-9]/.test(password);
+  return (
+    typeof password === "string" &&
+    password.length >= 8 &&
+    password.length <= 72 &&
+    /[A-Za-z]/.test(password) &&
+    /\d/.test(password) &&
+    /[^A-Za-z0-9]/.test(password)
+  );
 }
 
 function parseBirthDate(value) {
@@ -22,10 +27,14 @@ function parseBirthDate(value) {
   const [, day, month, year] = match;
   const date = new Date(Number(year), Number(month) - 1, Number(day));
   if (
-    date.getFullYear() !== Number(year)
-    || date.getMonth() !== Number(month) - 1
-    || date.getDate() !== Number(day)
+    date.getFullYear() !== Number(year) ||
+    date.getMonth() !== Number(month) - 1 ||
+    date.getDate() !== Number(day)
   ) {
+    return null;
+  }
+
+  if (Number(year) < 1900) {
     return null;
   }
 
@@ -40,7 +49,7 @@ function createToken(user) {
   return jwt.sign(
     { sub: String(user.id), email: user.email },
     process.env.JWT_SECRET,
-    { expiresIn: "7d" }
+    { expiresIn: "7d", algorithm: "HS256" },
   );
 }
 
@@ -64,7 +73,9 @@ function requireAuth(req, res, next) {
   }
 
   try {
-    req.user = jwt.verify(token, process.env.JWT_SECRET);
+    req.user = jwt.verify(token, process.env.JWT_SECRET, {
+      algorithm: "HS256",
+    });
     return next();
   } catch {
     return res.status(401).json({ error: "Sessão inválida ou expirada." });
