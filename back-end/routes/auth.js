@@ -42,7 +42,7 @@ router.post("/register", async (req, res) => {
   if (!isValidPassword(password)) {
     return res.status(400).json({
       error:
-        "A senha deve ter pelo menos 8 caracteres, uma letra, um número e um caractere especial.",
+        "A senha deve ter de 8 a 72 caracteres, com uma letra, um número e um caractere especial.",
     });
   }
 
