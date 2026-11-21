@@ -53,6 +53,29 @@
     evento.preventDefault();
     validarSenhas();
     if (!formulario.reportValidity()) return;
-    feedback.textContent = "Campos validados. Este projeto não possui serviço de cadastro; nenhum dado foi enviado ou salvo.";
+    const dados = new FormData(formulario);
+
+    fetch("/api/auth/register", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        name: dados.get("nome"),
+        birthDate: dados.get("datanascimento"),
+        email: dados.get("email"),
+        password: dados.get("senha"),
+      }),
+    })
+      .then(async (resposta) => {
+        const conteudo = await resposta.json();
+        if (!resposta.ok) throw new Error(conteudo.error);
+        feedback.textContent = "Cadastro realizado com sucesso!";
+        formulario.reset();
+        window.setTimeout(() => {
+          window.location.href = "index.html";
+        }, 800);
+      })
+      .catch((error) => {
+        feedback.textContent = error.message || "Não foi possível realizar o cadastro.";
+      });
   });
 })();
